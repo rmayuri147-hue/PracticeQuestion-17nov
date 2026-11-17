@@ -1,0 +1,582 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wanderlust | Explore the World</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f8f9f7;
+    color: #26332e;
+}
+
+header {
+    background: white;
+    padding: 18px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px #00000012;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #176b55;
+    letter-spacing: 1px;
+}
+
+nav {
+    display: flex;
+    gap: 27px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #26332e;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #16836a;
+}
+
+.hero {
+    min-height: 590px;
+    background: linear-gradient(#00000055, #00000060),
+    url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1800&q=85');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 40px 20px;
+}
+
+.hero-content {
+    max-width: 750px;
+}
+
+.hero h1 {
+    font-size: 58px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.hero p {
+    font-size: 19px;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    background: #e8a44a;
+    color: #fff;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #c77d22;
+    transform: translateY(-3px);
+}
+
+section {
+    padding: 75px 8%;
+    scroll-margin-top: 75px;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-heading h2 {
+    font-size: 34px;
+    color: #176b55;
+    margin-bottom: 12px;
+}
+
+.section-heading p {
+    color: #777;
+    font-size: 16px;
+}
+
+.destinations {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px #00000012;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px #00000020;
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 22px;
+}
+
+.card-content h3 {
+    font-size: 21px;
+    margin-bottom: 10px;
+    color: #176b55;
+}
+
+.card-content p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+.card-content .btn {
+    padding: 10px 20px;
+    font-size: 13px;
+}
+
+.about {
+    background: #eaf3ee;
+    text-align: center;
+}
+
+.about p {
+    max-width: 800px;
+    margin: auto;
+    font-size: 17px;
+    line-height: 1.9;
+    color: #53645b;
+}
+
+.tips-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    text-align: center;
+}
+
+.tip {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px #00000010;
+}
+
+.tip span {
+    font-size: 35px;
+}
+
+.tip h3 {
+    margin: 15px 0 10px;
+    color: #176b55;
+}
+
+.tip p {
+    color: #777;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.contact {
+    background: #eaf3ee;
+}
+
+.contact form {
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact input, .contact textarea {
+    padding: 15px;
+    border: 1px solid #ccd9d1;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+}
+
+.contact input:focus, .contact textarea:focus {
+    border-color: #176b55;
+}
+
+.contact textarea {
+    height: 130px;
+    resize: vertical;
+}
+
+.contact .btn {
+    align-self: flex-start;
+}
+
+#message {
+    color: #176b55;
+    font-weight: bold;
+}
+
+footer {
+    background: #153f34;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    line-height: 1.8;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #000000b8;
+    z-index: 200;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background: white;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 12px;
+    padding: 30px;
+    position: relative;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.modal-content h2 {
+    color: #176b55;
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 12px;
+}
+
+.close {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    font-size: 27px;
+    cursor: pointer;
+    color: #555;
+}
+
+@media(max-width: 700px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        gap: 13px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    section {
+        padding: 55px 6%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">✈ Wanderlust</div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#destinations">Destinations</a>
+        <a href="#about">About</a>
+        <a href="#tips">Travel Tips</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1>Discover the Beauty of the World</h1>
+        <p>Travel beyond boundaries, explore beautiful destinations
+        and create unforgettable memories. Your next adventure starts here.</p>
+        <a href="#destinations" class="btn">Explore Destinations →</a>
+    </div>
+</section>
+
+<section id="destinations">
+    <div class="section-heading">
+        <h2>Explore Destinations</h2>
+        <p>Discover some of the world's most beautiful places.</p>
+    </div>
+
+    <div class="destinations">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80" alt="Bali">
+            <div class="card-content">
+                <h3>Bali, Indonesia</h3>
+                <p>Experience tropical beaches, beautiful temples,
+                green rice terraces and peaceful island life.</p>
+                <button class="btn" onclick="explore('bali')">Explore More →</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80" alt="Paris">
+            <div class="card-content">
+                <h3>Paris, France</h3>
+                <p>Discover romantic streets, iconic architecture,
+                art museums and the famous Eiffel Tower.</p>
+                <button class="btn" onclick="explore('paris')">Explore More →</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=800&q=80" alt="Santorini">
+            <div class="card-content">
+                <h3>Santorini, Greece</h3>
+                <p>Enjoy whitewashed houses, blue domes,
+                breathtaking sea views and magical sunsets.</p>
+                <button class="btn" onclick="explore('santorini')">Explore More →</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=800&q=80" alt="Switzerland">
+            <div class="card-content">
+                <h3>Switzerland</h3>
+                <p>Explore snow-covered mountains, scenic villages,
+                beautiful lakes and amazing alpine landscapes.</p>
+                <button class="btn" onclick="explore('switzerland')">Explore More →</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=800&q=80" alt="Maldives">
+            <div class="card-content">
+                <h3>Maldives</h3>
+                <p>Relax in turquoise waters, luxurious island
+                resorts and beautiful white sandy beaches.</p>
+                <button class="btn" onclick="explore('maldives')">Explore More →</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="about" id="about">
+    <div class="section-heading">
+        <h2>About Wanderlust</h2>
+        <p>Travel is not just about places, it is about experiences.</p>
+    </div>
+    <p>
+        Welcome to Wanderlust, your little corner of the internet
+        dedicated to exploring the world. Our travel blog brings
+        together inspiring destinations, helpful travel information
+        and exciting experiences. Whether you love mountains,
+        beaches, culture or adventure, we help you discover places
+        worth visiting and memories worth creating.
+    </p>
+</section>
+
+<section id="tips">
+    <div class="section-heading">
+        <h2>Smart Travel Tips</h2>
+        <p>Make every journey comfortable, safe and memorable.</p>
+    </div>
+
+    <div class="tips-container">
+        <div class="tip">
+            <span>🎒</span>
+            <h3>Pack Smart</h3>
+            <p>Carry essential items and avoid unnecessary luggage.</p>
+        </div>
+
+        <div class="tip">
+            <span>💰</span>
+            <h3>Plan Your Budget</h3>
+            <p>Set a travel budget and keep some money for emergencies.</p>
+        </div>
+
+        <div class="tip">
+            <span>📸</span>
+            <h3>Capture Memories</h3>
+            <p>Take pictures and enjoy the special moments of your trip.</p>
+        </div>
+
+        <div class="tip">
+            <span>🛡️</span>
+            <h3>Travel Safely</h3>
+            <p>Keep important documents safe and follow local guidelines.</p>
+        </div>
+    </div>
+</section>
+
+<section class="contact" id="contact">
+    <div class="section-heading">
+        <h2>Get In Touch</h2>
+        <p>Have a travel question or suggestion? Send us a message.</p>
+    </div>
+
+    <form onsubmit="sendMessage(event)">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <textarea id="msg" placeholder="Write your message..." required></textarea>
+        <button class="btn" type="submit">Send Message →</button>
+        <p id="message"></p>
+    </form>
+</section>
+
+<footer>
+    <h3>✈ Wanderlust – Explore the World</h3>
+    <p>Discover. Travel. Experience. Repeat.</p>
+    <p>© 2026 Wanderlust Travel Blog | All Rights Reserved</p>
+</footer>
+
+<div class="modal" id="destinationModal" onclick="closeOutside(event)">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+        <p id="modalBest"></p>
+        <p id="modalActivities"></p>
+        <p id="modalInfo"></p>
+        <button class="btn" onclick="closeModal()">Close</button>
+    </div>
+</div>
+
+<script>
+const destinations = {
+    bali: {
+        title: "Bali, Indonesia 🌴",
+        description: "Bali is a tropical paradise famous for its beautiful beaches, ancient temples, waterfalls and lush green rice terraces.",
+        best: "Best Time to Visit: April to October.",
+        activities: "Top Attractions: Uluwatu Temple, Ubud, Tegallalang Rice Terraces and Nusa Penida.",
+        info: "Travel Information: Explore local markets, enjoy Balinese cuisine and experience traditional culture."
+    },
+    paris: {
+        title: "Paris, France 🗼",
+        description: "Paris is known as the City of Love, offering magnificent architecture, charming cafes, art and rich history.",
+        best: "Best Time to Visit: April to June and September to October.",
+        activities: "Top Attractions: Eiffel Tower, Louvre Museum, Notre-Dame and Seine River.",
+        info: "Travel Information: Use the Metro for convenient transport and explore the city's famous bakeries."
+    },
+    santorini: {
+        title: "Santorini, Greece 🌊",
+        description: "Santorini is a beautiful Greek island famous for its white buildings, blue domes and stunning sunsets.",
+        best: "Best Time to Visit: April to October.",
+        activities: "Top Attractions: Oia Village, Fira, Red Beach and Akrotiri.",
+        info: "Travel Information: Explore the island by local bus, enjoy Greek food and watch the sunset in Oia."
+    },
+    switzerland: {
+        title: "Switzerland 🏔️",
+        description: "Switzerland offers breathtaking alpine mountains, peaceful villages, clear lakes and unforgettable scenic train journeys.",
+        best: "Best Time to Visit: May to September for hiking; December to March for snow activities.",
+        activities: "Top Attractions: Interlaken, Lucerne, Zermatt and Jungfraujoch.",
+        info: "Travel Information: Trains are a convenient way to explore the country. Carry warm clothes for mountain trips."
+    },
+    maldives: {
+        title: "Maldives 🏝️",
+        description: "The Maldives is a tropical island destination famous for crystal-clear waters, coral reefs and peaceful beaches.",
+        best: "Best Time to Visit: November to April.",
+        activities: "Top Attractions: Male, Maafushi, Banana Reef and local island beaches.",
+        info: "Travel Information: Plan speedboat or ferry transfers in advance and try snorkeling and diving."
+    }
+};
+
+function explore(place) {
+    const data = destinations[place];
+
+    document.getElementById("modalTitle").textContent = data.title;
+    document.getElementById("modalDescription").textContent = data.description;
+    document.getElementById("modalBest").textContent = data.best;
+    document.getElementById("modalActivities").textContent = data.activities;
+    document.getElementById("modalInfo").textContent = data.info;
+
+    document.getElementById("destinationModal").style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById("destinationModal").style.display = "none";
+}
+
+function closeOutside(event) {
+    if (event.target.id === "destinationModal") {
+        closeModal();
+    }
+}
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        closeModal();
+    }
+});
+
+function sendMessage(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value;
+
+    document.getElementById("message").textContent =
+        "Thank you, " + name + "! Your message has been received.";
+
+    event.target.reset();
+}
+</script>
+
+</body>
+</html>
